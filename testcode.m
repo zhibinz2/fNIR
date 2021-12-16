@@ -37,6 +37,7 @@ oxyvalsL=DataFNIR.oxyvals;
 dxyvalsL=DataFNIR.dxyvals;
 timeL=DataFNIR.time;
 
+
 figure;
 subplot(2,1,1);
 plot(timeR,oxyvalsR-repmat(mean(oxyvalsR(1:50,:),1),2766,1),'r'); hold on;
@@ -44,3 +45,15 @@ plot(timeR,dxyvalsR-repmat(mean(dxyvalsR(1:50,:),1),2766,1),'b'); hold off;
 subplot(2,1,2);
 plot(timeL,oxyvalsL-repmat(mean(oxyvalsL(1:50,:),1),3216,1),'r'); hold on;
 plot(timeL,dxyvalsL-repmat(mean(dxyvalsL(1:50,:),1),3216,1),'b'); hold off;
+
+
+
+figure;
+subplot(2,1,1);
+plot(timeR,oxyvalsR-repmat(mean(oxyvalsR(50:100,:),1),2766,1),'r'); hold on;
+plot(timeR,dxyvalsR-repmat(mean(dxyvalsR(50:100,:),1),2766,1),'b'); hold off;
+xlabel('time (second)');title('Right arm movements');xlim([1 50]);ylim([-6 6]);
+subplot(2,1,2);
+plot(timeL,oxyvalsL-repmat(mean(oxyvalsL(50:100,:),1),3216,1),'r'); hold on;
+plot(timeL,dxyvalsL-repmat(mean(dxyvalsL(50:100,:),1),3216,1),'b'); hold off;
+xlabel('time (second)');title('Left arm movements');xlim([1 50]);ylim([-6 6]);

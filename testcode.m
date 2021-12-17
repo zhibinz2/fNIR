@@ -7,6 +7,7 @@ oxysoft2matlab ({'20211214.oxy5', 'Measurement Examples.oxyproj'})
 
 %%
 DataFNIR=ans;
+DataFNIR=nirs_data;
 RighthandData=ans;
 LefthandData=ans;
 
@@ -40,20 +41,28 @@ timeL=DataFNIR.time;
 
 figure;
 subplot(2,1,1);
-plot(timeR,oxyvalsR-repmat(mean(oxyvalsR(1:50,:),1),2766,1),'r'); hold on;
-plot(timeR,dxyvalsR-repmat(mean(dxyvalsR(1:50,:),1),2766,1),'b'); hold off;
+plotx(timeR,oxyvalsR,'r'); hold on;
+plotx(timeR,dxyvalsR,'b'); hold off;
+xlabel('time (second)');title('Right arm movements: oxyval (red); dxyvals (blue)');xlim([1 50]);
 subplot(2,1,2);
-plot(timeL,oxyvalsL-repmat(mean(oxyvalsL(1:50,:),1),3216,1),'r'); hold on;
-plot(timeL,dxyvalsL-repmat(mean(dxyvalsL(1:50,:),1),3216,1),'b'); hold off;
+plotx(timeL,oxyvalsL,'r'); hold on;
+plotx(timeL,dxyvalsL,'b'); hold off;
+xlabel('time (second)');title('Left arm movements: oxyval (red); dxyvals (blue)');xlim([1 50]);
 
-
+Badchannels=[5 6];
+Goodchannels=[1:1:22];
+Goodchannels(Badchannels)=[];
 
 figure;
 subplot(2,1,1);
-plot(timeR,oxyvalsR-repmat(mean(oxyvalsR(50:100,:),1),2766,1),'r'); hold on;
-plot(timeR,dxyvalsR-repmat(mean(dxyvalsR(50:100,:),1),2766,1),'b'); hold off;
-xlabel('time (second)');title('Right arm movements');xlim([1 50]);ylim([-6 6]);
+oxyvalsRb=oxyvalsR-repmat(mean(oxyvalsR(50:100,:),1),2766,1);
+dxyvalsRb=dxyvalsR-repmat(mean(dxyvalsR(50:100,:),1),2766,1);
+plotx(timeR,oxyvalsRb(:,Goodchannels),'r'); hold on;
+plotx(timeR,dxyvalsRb(:,Goodchannels),'b'); hold off;
+xlabel('time (second)');title('Right arm movements: oxyval (red); dxyvals (blue)');xlim([1 50]);ylim([-2 2]);
 subplot(2,1,2);
-plot(timeL,oxyvalsL-repmat(mean(oxyvalsL(50:100,:),1),3216,1),'r'); hold on;
-plot(timeL,dxyvalsL-repmat(mean(dxyvalsL(50:100,:),1),3216,1),'b'); hold off;
-xlabel('time (second)');title('Left arm movements');xlim([1 50]);ylim([-6 6]);
+oxyvalsLb=oxyvalsL-repmat(mean(oxyvalsL(50:100,:),1),3216,1);
+dxyvalsLb=dxyvalsL-repmat(mean(dxyvalsL(50:100,:),1),3216,1);
+plotx(timeL,oxyvalsLb(:,Goodchannels),'r'); hold on;
+plotx(timeL,dxyvalsLb(:,Goodchannels),'b'); hold off;
+xlabel('time (second)');title('Left arm movements: oxyval (red); dxyvals (blue)');xlim([1 50]);ylim([-2 2]);

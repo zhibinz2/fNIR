@@ -29,7 +29,7 @@ receiPos=DataFNIR.receiPos;
 ADlabel=DataFNIR.ADlabel;
 ADvalues=DataFNIR.ADvalues;
 events=DataFNIR.events;
-%%
+%% DataFNIR
 oxyvalsR=DataFNIR.oxyvals;
 dxyvalsR=DataFNIR.dxyvals;
 timeR=DataFNIR.time;
@@ -37,8 +37,16 @@ timeR=DataFNIR.time;
 oxyvalsL=DataFNIR.oxyvals;
 dxyvalsL=DataFNIR.dxyvals;
 timeL=DataFNIR.time;
+%% nirs_data
+oxyvalsR=nirs_data.oxyvals;
+dxyvalsR=nirs_data.dxyvals;
+timeR=nirs_data.time;
 
+oxyvalsL=nirs_data.oxyvals;
+dxyvalsL=nirs_data.dxyvals;
+timeL=nirs_data.time;
 
+%% Just plot as they are
 figure;
 subplot(2,1,1);
 plotx(timeR,oxyvalsR,'r'); hold on;
@@ -53,6 +61,8 @@ Badchannels=[5 6];
 Goodchannels=[1:1:22];
 Goodchannels(Badchannels)=[];
 
+
+%% plot baseline corrected
 figure;
 subplot(2,1,1);
 oxyvalsRb=oxyvalsR-repmat(mean(oxyvalsR(50:100,:),1),2766,1);
